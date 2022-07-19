@@ -33,7 +33,10 @@ app.use("/", async (req, res) => { // url?http://example.com/
   if (!url) return e(400, "no url provided", res)
 
   tryCatch(async () => {
-    const data = await fetch(url)
+    let data = await fetch(url)
+    if (!data) e(400, `${url} returned no response`, res)
+
+    data = await data.json()
     s("data retrieved!", data, res)
   }, res)
 });
