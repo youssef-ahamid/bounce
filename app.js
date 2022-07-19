@@ -37,7 +37,7 @@ app.use("/", async (req, res) => { // url?http://example.com/
     if (!data) e(400, `${url} returned no response`, res)
 
     data = await data.json()
-    s("data retrieved!", data, res)
+    res.send(data)
   }, res)
 });
 
