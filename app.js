@@ -24,12 +24,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // ------------------Routes------------------ //
+import { e, s, tryCatch } from "./utils";
 import fetch from "node-fetch";
-app.use("/", async (req, res) => {
+
+app.use("/", async (req, res) => { // url?http://example.com/
   const { url } = req.query
 
-  const data = await fetch(url)
-  res.send(data)
+  if (!url) return e(400, "no url provided", res)
+
+  tryCatch(async () => {
+    const data = await fetch(url)
+    s("data retrieved!", data, res)
+  }, res)
 });
 
 export default app;
