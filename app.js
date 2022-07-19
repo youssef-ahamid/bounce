@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // ------------------Routes------------------ //
-import { e, s, tryCatch } from "./utils";
+import { e, s, tryCatch } from "./utils.js";
 import fetch from "node-fetch";
 
 app.use("/", async (req, res) => { // url?http://example.com/
